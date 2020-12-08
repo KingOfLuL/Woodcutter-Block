@@ -1,0 +1,18 @@
+private static final Identifier WOOD_CUTTER_SCREEN_HANDLER_ID = new Identifier("mfirstm", "woodcutter");
+public static RecipeSerializer<WoodcuttingRecipe> WOODCUTTING_SERIALIZER;
+public static RecipeType<WoodcuttingRecipe> WOODCUTTING_RECIPE_TYPE;
+public static ScreenHandlerType<WoodcutterScreenHandler> WOODCUTTER_SCREEN_HANDLER_TYPE;
+public static Identifier INTERACT_WITH_WOODCUTTER;
+public static final Block WOOD_CUTTER_BLOCK = new WoodcutterBlock(FabricBlockSettings.of(Material.STONE).requiresTool().breakByTool(FabricToolTags.PICKAXES));
+
+
+Registry.register(Registry.BLOCK, new Identifier(CoolMod.MOD_ID, "woodcutter"), WOOD_CUTTER_BLOCK);
+Registry.register(Registry.ITEM, new Identifier(CoolMod.MOD_ID, "woodcutter"), new BlockItem(WOOD_CUTTER_BLOCK, new Item.Settings().group(ItemGroup.DECORATIONS)));
+WOODCUTTING_RECIPE_TYPE = RecipeType.register("woodcutting");
+Registry.register(Registry.RECIPE_SERIALIZER, new Identifier("stonecutting"), WOODCUTTING_SERIALIZER);
+WOODCUTTER_SCREEN_HANDLER_TYPE = ScreenHandlerRegistry.registerSimple(WOOD_CUTTER_SCREEN_HANDLER_ID, WoodcutterScreenHandler::new);
+Registry.register(Registry.CUSTOM_STAT, new Identifier("interact_with_woodcutter"), INTERACT_WITH_WOODCUTTER);
+ScreenRegistry.register(WOODCUTTER_SCREEN_HANDLER_TYPE, WoodcutterScreen::new);
+
+
+//Registrys are in correct methods, just copied because there is a bunch of other stuff I made that has nothing to do with this thing.
